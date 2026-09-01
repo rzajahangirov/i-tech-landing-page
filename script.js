@@ -9,15 +9,34 @@ const burgerBtn = document.getElementById('burgerBtn');
 const mobilePanel = document.getElementById('mobilePanel');
 const burgerIcon = document.getElementById('burgerIcon');
 if (burgerBtn && mobilePanel && burgerIcon) {
-  burgerBtn.addEventListener('click', () => {
+  const closeMenu = () => {
+    mobilePanel.classList.remove('open');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+    burgerIcon.innerHTML = '<use href="#i-menu"/>';
+  };
+
+  burgerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
     const open = mobilePanel.classList.toggle('open');
     burgerBtn.setAttribute('aria-expanded', open);
     burgerIcon.innerHTML = open ? '<use href="#i-close"/>' : '<use href="#i-menu"/>';
   });
-  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    mobilePanel.classList.remove('open');
-    burgerIcon.innerHTML = '<use href="#i-menu"/>';
-  }));
+
+  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (mobilePanel.classList.contains('open') && !mobilePanel.contains(e.target) && !burgerBtn.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobilePanel.classList.contains('open')) {
+      closeMenu();
+    }
+  });
 }
 
 // ---- Hero parallax on mouse move (disabled for reduced motion / touch) ----
