@@ -60,7 +60,7 @@ if (steps.length > 0) {
 // ---- Contact Form Handler ----
 const GOOGLE_SHEETS_WEBHOOK_URL = (typeof CONFIG !== 'undefined' && CONFIG.GOOGLE_SHEETS_WEBHOOK_URL)
   ? CONFIG.GOOGLE_SHEETS_WEBHOOK_URL
-  : 'https://script.google.com/macros/s/AKfycbwoKs7nXYUXXbUhVbZsLFemRkbHuanPcuM-O2LJkbj_Ake5EL0XUkwEZwFXiLaa3IzZ3Q/exec'; 
+  : 'https://script.google.com/macros/s/AKfycbzjlyNKca6ZhONnbYCCgMjKTb85gypXm6p-fdExK6dITyIY86JXYCMmRikREsaC6LldqA/exec'; 
 
 const ctaForm = document.getElementById('ctaForm');
 const formSuccess = document.getElementById('formSuccess');
@@ -69,26 +69,24 @@ const submitBtn = document.getElementById('submitBtn');
 async function sendToGoogleSheets(url, data) {
   if (!url) return;
 
-  const formData = new FormData();
-  formData.append('fullName', data.fullName || '');
-  formData.append('contactInfo', data.contactInfo || '');
-  formData.append('projectNote', data.projectNote || '');
+  const params = new URLSearchParams();
+  params.append('fullName', data.fullName || '');
+  params.append('contactInfo', data.contactInfo || '');
+  params.append('projectNote', data.projectNote || '');
 
-  // 1. Send via POST with FormData (Standard)
+  // 1. Send via POST (application/x-www-form-urlencoded)
   try {
     await fetch(url, {
       method: 'POST',
-      body: formData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: params.toString(),
       mode: 'no-cors'
     });
   } catch (err) {
-    // 2. Fallback: Send via GET query parameters if POST fails
+    // 2. Fallback: Send via GET query parameters
     try {
-      const params = new URLSearchParams({
-        fullName: data.fullName || '',
-        contactInfo: data.contactInfo || '',
-        projectNote: data.projectNote || ''
-      });
       await fetch(`${url}?${params.toString()}`, {
         method: 'GET',
         mode: 'no-cors'
