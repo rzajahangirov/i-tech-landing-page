@@ -57,74 +57,84 @@ if (steps.length > 0) {
   steps.forEach(s => io.observe(s));
 }
 
-// ---- Contact Form Handler (Connected via config.js or fallback) ----
+// ---- Contact Form Handler ----
 const GOOGLE_SHEETS_WEBHOOK_URL = (typeof CONFIG !== 'undefined' && CONFIG.GOOGLE_SHEETS_WEBHOOK_URL)
   ? CONFIG.GOOGLE_SHEETS_WEBHOOK_URL
-  : (typeof atob !== 'undefined' ? atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3bmlET1J2ZlAxb09lV2NBWnJOOVRseFRMWjE5cm9VVzIybTA1NUR3Nk1DM1JoY2Q0UE4xVVk5OXV1bzVtLVlZZ0RWdy9leGVj') : ''); 
+  : 'https://script.google.com/macros/s/AKfycbwoKs7nXYUXXbUhVbZsLFemRkbHuanPcuM-O2LJkbj_Ake5EL0XUkwEZwFXiLaa3IzZ3Q/exec'; 
 
 const ctaForm = document.getElementById('ctaForm');
 const formSuccess = document.getElementById('formSuccess');
 const submitBtn = document.getElementById('submitBtn');
 
-function sendToGoogleSheets(url, data) {
+async function sendToGoogleSheets(url, data) {
   if (!url) return;
 
-  const params = new URLSearchParams({
-    fullName: data.fullName || '',
-    contactInfo: data.contactInfo || '',
-    projectNote: data.projectNote || ''
-  });
+  const formData = new FormData();
+  formData.append('fullName', data.fullName || '');
+  formData.append('contactInfo', data.contactInfo || '');
+  formData.append('projectNote', data.projectNote || '');
 
-  const fullUrl = `${url}?${params.toString()}`;
-
-  // 1. Send via Fetch API
+  // 1. Send via POST with FormData (Standard)
   try {
-    fetch(fullUrl, {
-      method: 'GET',
+    await fetch(url, {
+      method: 'POST',
+      body: formData,
       mode: 'no-cors'
-    }).catch(() => {});
-  } catch(e) {}
-
-  // 2. Send via native beacon / image request (100% bypasses CORS & redirect issues)
-  try {
-    const beacon = new Image();
-    beacon.src = fullUrl;
-  } catch(e) {}
+    });
+  } catch (err) {
+    // 2. Fallback: Send via GET query parameters if POST fails
+    try {
+      const params = new URLSearchParams({
+        fullName: data.fullName || '',
+        contactInfo: data.contactInfo || '',
+        projectNote: data.projectNote || ''
+      });
+      await fetch(`${url}?${params.toString()}`, {
+        method: 'GET',
+        mode: 'no-cors'
+      });
+    } catch (e) {
+      console.error('Google Sheets submission failed:', e);
+    }
+  }
 }
 
 if (ctaForm) {
-  ctaForm.addEventListener('submit', (e) => {
+  ctaForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const formData = new FormData(ctaForm);
     const data = Object.fromEntries(formData.entries());
-    console.log('Submitted Form Data:', data);
 
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.querySelector('span').textContent = 'Submitting...';
+      const btnSpan = submitBtn.querySelector('span');
+      if (btnSpan) btnSpan.textContent = 'Submitting...';
     }
 
-    // Send data to Google Sheets
-    sendToGoogleSheets(GOOGLE_SHEETS_WEBHOOK_URL, data);
+    try {
+      await sendToGoogleSheets(GOOGLE_SHEETS_WEBHOOK_URL, data);
 
-    // Show success message
-    if (formSuccess) {
-      formSuccess.style.display = 'block';
-      formSuccess.textContent = "✓ Request received! We'll get back to you shortly.";
-    }
-    ctaForm.reset();
-
-    setTimeout(() => {
-      if (formSuccess) formSuccess.style.display = 'none';
-    }, 6000);
-
-    setTimeout(() => {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.querySelector('span').textContent = 'Submit Request';
+      if (formSuccess) {
+        formSuccess.style.display = 'block';
+        formSuccess.textContent = "✓ Request received! We'll get back to you shortly.";
       }
-    }, 800);
+      ctaForm.reset();
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setTimeout(() => {
+        if (formSuccess) formSuccess.style.display = 'none';
+      }, 6000);
+
+      setTimeout(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          const btnSpan = submitBtn.querySelector('span');
+          if (btnSpan) btnSpan.textContent = 'Submit Request';
+        }
+      }, 1000);
+    }
   });
 }
 
