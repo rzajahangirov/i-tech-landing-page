@@ -60,7 +60,7 @@ if (steps.length > 0) {
 // ---- Contact Form Handler (Connected via config.js or fallback) ----
 const GOOGLE_SHEETS_WEBHOOK_URL = (typeof CONFIG !== 'undefined' && CONFIG.GOOGLE_SHEETS_WEBHOOK_URL)
   ? CONFIG.GOOGLE_SHEETS_WEBHOOK_URL
-  : (typeof atob !== 'undefined' ? atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3STRTb0dEeXpvVGdUWkhjamx4RGhlVWtqRzdmMmhEX3Y1UVpjVTZoQmJZRGlDZjdZSC1hWEd6dEZtSWc4QVhkY050US9leGVj') : ''); 
+  : (typeof atob !== 'undefined' ? atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6aE1jTlU4OFV4MlRzZXpTc1d6akdHNlhma0d0ZTZ2UnVqWVhvaXB3aHYzRmUzSG84dEJ5WXFDdWJpdDgwcThhaWxlQS9leGVj') : ''); 
 
 const ctaForm = document.getElementById('ctaForm');
 const formSuccess = document.getElementById('formSuccess');
