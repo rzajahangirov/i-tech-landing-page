@@ -60,55 +60,35 @@ if (steps.length > 0) {
 // ---- Contact Form Handler (Connected via config.js or fallback) ----
 const GOOGLE_SHEETS_WEBHOOK_URL = (typeof CONFIG !== 'undefined' && CONFIG.GOOGLE_SHEETS_WEBHOOK_URL)
   ? CONFIG.GOOGLE_SHEETS_WEBHOOK_URL
-  : (typeof atob !== 'undefined' ? atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J6dXloVXlZc0lMeUVidk1UcVI5RHRGS2d1LWxOX0I2a3FfVzNDMWxYd3dxb0NicTFZa0VZdG9mMThTWHZzN1ByMnNVZy9leGVj') : ''); 
+  : (typeof atob !== 'undefined' ? atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3bmlET1J2ZlAxb09lV2NBWnJOOVRseFRMWjE5cm9VVzIybTA1NUR3Nk1DM1JoY2Q0UE4xVVk5OXV1bzVtLVlZZ0RWdy9leGVj') : ''); 
 
 const ctaForm = document.getElementById('ctaForm');
 const formSuccess = document.getElementById('formSuccess');
 const submitBtn = document.getElementById('submitBtn');
 
-function postToGoogleSheets(url, data) {
+function sendToGoogleSheets(url, data) {
   if (!url) return;
 
-  // Method 1: Fetch API
+  const params = new URLSearchParams({
+    fullName: data.fullName || '',
+    contactInfo: data.contactInfo || '',
+    projectNote: data.projectNote || ''
+  });
+
+  const fullUrl = `${url}?${params.toString()}`;
+
+  // 1. Send via Fetch API
   try {
-    const params = new URLSearchParams(data);
-    fetch(url, {
-      method: 'POST',
-      mode: 'no-cors',
-      body: params
+    fetch(fullUrl, {
+      method: 'GET',
+      mode: 'no-cors'
     }).catch(() => {});
   } catch(e) {}
 
-  // Method 2: Native HTML Form submission via hidden iframe (Guaranteed 100% Delivery)
+  // 2. Send via native beacon / image request (100% bypasses CORS & redirect issues)
   try {
-    let iframe = document.getElementById('gform_iframe');
-    if (!iframe) {
-      iframe = document.createElement('iframe');
-      iframe.id = 'gform_iframe';
-      iframe.name = 'gform_iframe';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-    }
-
-    const form = document.createElement('form');
-    form.method = 'POST';
-    form.action = url;
-    form.target = 'gform_iframe';
-    form.style.display = 'none';
-
-    for (const key in data) {
-      const field = document.createElement('input');
-      field.type = 'hidden';
-      field.name = key;
-      field.value = data[key] || '';
-      form.appendChild(field);
-    }
-
-    document.body.appendChild(form);
-    form.submit();
-    setTimeout(() => {
-      if (form.parentNode) form.parentNode.removeChild(form);
-    }, 2000);
+    const beacon = new Image();
+    beacon.src = fullUrl;
   } catch(e) {}
 }
 
@@ -126,7 +106,7 @@ if (ctaForm) {
     }
 
     // Send data to Google Sheets
-    postToGoogleSheets(GOOGLE_SHEETS_WEBHOOK_URL, data);
+    sendToGoogleSheets(GOOGLE_SHEETS_WEBHOOK_URL, data);
 
     // Show success message
     if (formSuccess) {
@@ -144,7 +124,7 @@ if (ctaForm) {
         submitBtn.disabled = false;
         submitBtn.querySelector('span').textContent = 'Submit Request';
       }
-    }, 1000);
+    }, 800);
   });
 }
 
