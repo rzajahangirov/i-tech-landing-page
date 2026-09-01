@@ -81,11 +81,16 @@ if (ctaForm) {
 
     try {
       if (GOOGLE_SHEETS_WEBHOOK_URL) {
+        const params = new URLSearchParams();
+        params.append('fullName', data.fullName || '');
+        params.append('contactInfo', data.contactInfo || '');
+        params.append('projectNote', data.projectNote || '');
+
         await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(data)
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString()
         });
       }
 
