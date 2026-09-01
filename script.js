@@ -7,19 +7,16 @@ window.addEventListener('scroll', () => {
 // ---- Mobile menu toggle ----
 const burgerBtn = document.getElementById('burgerBtn');
 const mobilePanel = document.getElementById('mobilePanel');
-const burgerIcon = document.getElementById('burgerIcon');
-if (burgerBtn && mobilePanel && burgerIcon) {
+if (burgerBtn && mobilePanel) {
   const closeMenu = () => {
     mobilePanel.classList.remove('open');
     burgerBtn.setAttribute('aria-expanded', 'false');
-    burgerIcon.innerHTML = '<use href="#i-menu"/>';
   };
 
   burgerBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    const open = mobilePanel.classList.toggle('open');
-    burgerBtn.setAttribute('aria-expanded', open);
-    burgerIcon.innerHTML = open ? '<use href="#i-close"/>' : '<use href="#i-menu"/>';
+    const isOpen = mobilePanel.classList.toggle('open');
+    burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 
   mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
