@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İ-Tech — End-to-End Software Development</title>
+<meta name="description" content="İ-Tech designs, builds, and ships custom web, mobile, and desktop applications — architecture, infrastructure, and deployment included.">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ ICON SPRITE ============ -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="i-web" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><circle cx="6.3" cy="6.75" r=".55" fill="currentColor" stroke="none"/><circle cx="8.6" cy="6.75" r=".55" fill="currentColor" stroke="none"/><circle cx="10.9" cy="6.75" r=".55" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2.4"/><line x1="10.6" y1="18.6" x2="13.4" y2="18.6"/></symbol>
+    <symbol id="i-desktop" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12.5" rx="1.6"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16.5" x2="12" y2="20"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><rect x="5" y="5" width="10" height="10" rx="2" opacity=".45"/><rect x="9" y="9" width="10" height="10" rx="2"/></symbol>
+    <symbol id="i-backend" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="6" rx="1.6"/><rect x="4" y="14" width="16" height="6" rx="1.6"/><circle cx="7.4" cy="7" r=".7" fill="currentColor" stroke="none"/><circle cx="7.4" cy="17" r=".7" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><ellipse cx="12" cy="12" rx="3.6" ry="8.5"/><line x1="3.5" y1="12" x2="20.5" y2="12"/></symbol>
+    <symbol id="i-launch" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 15.5L15 9"/><path d="M10.6 9H15v4.4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol>
+    <symbol id="i-java" viewBox="0 0 24 24"><path d="M6 12v3.2c0 1.8 2.7 3.3 6 3.3s6-1.5 6-3.3V12"/><path d="M9 4.5c-1.2 1.6.9 2.6-.4 4.4"/><path d="M12.4 4c-1.2 1.8 1.3 2.8-.3 4.9"/><ellipse cx="12" cy="11.2" rx="6" ry="2.4"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c9 1 14-4 14-14C9 5 4 10 5 19Z"/><path d="M5 19c3.5-3.5 6.5-6.5 10-10"/></symbol>
+    <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></symbol>
+    <symbol id="i-docker" viewBox="0 0 24 24"><rect x="3.5" y="10" width="4.2" height="4" rx=".6"/><rect x="8.4" y="10" width="4.2" height="4" rx=".6"/><rect x="8.4" y="5.4" width="4.2" height="4" rx=".6"/><rect x="13.3" y="10" width="4.2" height="4" rx=".6"/><path d="M2.5 14.2c1.5 4.6 5.6 5.3 9.7 5.3 5 0 8.9-2.3 10.3-6.3-1-.6-2.3-.5-2.3-.5s-.4-2-1.9-3.1c-.9 1-1 2.6-.6 3.6-.5.3-1.7.7-3 .7H4.6c-.7 0-1.4.5-2.1 1.3Z"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M6.5 18.5a4.2 4.2 0 0 1-.6-8.35 5.5 5.5 0 0 1 10.7-1.9A4.5 4.5 0 0 1 17.5 18.5Z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.2"/><path d="M4 6.5l8 6 8-6"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z" fill="currentColor"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.974-1.39A9.956 9.956 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.96 7.96 0 0 1-4.068-1.112l-.292-.174-2.955.826.838-2.88-.19-.303A7.962 7.962 0 0 1 4 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="brand">
+      <img src="logo.png" alt="i-Tech Logo" class="brand-logo">
+      İ-Tech
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#services" class="btn btn-outline btn-sm">Our Services</a>
+      <a href="#contact" class="btn btn-primary btn-sm">Start a Project</a>
+      <button class="nav-burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+        <svg class="icon" id="burgerIcon"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="mobile-panel" id="mobilePanel">
+  <div class="mobile-panel-inner">
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#stack">Stack</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="btn btn-primary">Start a Project</a>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-dotgrid"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot"></span>Full-cycle engineering partner</span>
+      <h1>End-to-End Software Development <span class="muted">for Modern Businesses.</span></h1>
+      <p class="hero-sub">We design, build, and ship custom web, mobile, and desktop applications — architecture, infrastructure, and deployment included, so your team stays focused on the business, not the build.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Start a Project <svg class="icon" style="width:16px;height:16px"><use href="#i-arrow"/></svg></a>
+        <a href="#services" class="btn btn-outline">Our Services</a>
+      </div>
+      <div class="hero-note"><span class="status-dot"></span>Scoping calls booked within one business day</div>
+    </div>
+
+    <div class="hero-visual" id="heroVisual">
+      <div class="blob-field" id="blobField">
+        <svg class="mesh" viewBox="0 0 200 200"><ellipse cx="100" cy="100" rx="90" ry="34"/><ellipse cx="100" cy="100" rx="90" ry="34" transform="rotate(60 100 100)"/><ellipse cx="100" cy="100" rx="90" ry="34" transform="rotate(120 100 100)"/><circle cx="100" cy="100" r="90"/></svg>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+      </div>
+      <div class="float-card float-card-1">
+        <div class="fc-title"><span class="live-dot"></span>Deployed to production</div>
+        <div class="fc-meta">prod · eu-west-1 · 41s ago</div>
+        <div class="fc-row"><span class="fc-chip">Spring Boot</span><span class="fc-chip">Docker</span></div>
+      </div>
+      <div class="float-card float-card-2">
+        <div class="fc-title">✓ Build passing</div>
+        <div class="fc-meta">142 tests · 0 failed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROOF STRIP ============ -->
+<section class="proof">
+  <div class="wrap proof-inner">
+    <span class="proof-label">Built for teams that can't afford downtime</span>
+    <div class="proof-stats">
+      <div class="proof-stat"><b>99.9%</b><span>Avg. uptime SLA</span></div>
+      <div class="proof-stat"><b>6–10 wks</b><span>Typical MVP delivery</span></div>
+      <div class="proof-stat"><b>1</b><span>Accountable team, start to finish</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PIPELINE ============ -->
+<section class="pipeline" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>The Zero-Headache Pipeline</span>
+      <h2>One partner, the entire pipeline.</h2>
+      <p>No handoffs between agencies, no gaps between design and infrastructure — just one accountable team, from the first sketch to a live product.</p>
+    </div>
+
+    <div class="pipeline-track">
+      <div class="pipeline-line"><div class="pipeline-line-fill" id="lineFill"></div></div>
+      <div class="pipeline-steps" id="pipelineSteps">
+        <div class="pipeline-step" data-i="0">
+          <div class="pipeline-node">01</div>
+          <svg class="icon step-icon"><use href="#i-layers"/></svg>
+          <h3>UI/UX Design</h3>
+          <p>Wireframes, prototypes, and interface design built around how your users actually work.</p>
+        </div>
+        <div class="pipeline-step" data-i="1">
+          <div class="pipeline-node">02</div>
+          <svg class="icon step-icon"><use href="#i-backend"/></svg>
+          <h3>Backend Engineering</h3>
+          <p>Robust, scalable architecture on Java and Spring Boot, built to handle real business logic.</p>
+        </div>
+        <div class="pipeline-step" data-i="2">
+          <div class="pipeline-node">03</div>
+          <svg class="icon step-icon"><use href="#i-globe"/></svg>
+          <h3>Server Config &amp; Domain</h3>
+          <p>Infrastructure provisioning, domain setup, and environment configuration — handled end to end.</p>
+        </div>
+        <div class="pipeline-step" data-i="3">
+          <div class="pipeline-node">04</div>
+          <svg class="icon step-icon"><use href="#i-launch"/></svg>
+          <h3>Deployment</h3>
+          <p>CI/CD pipelines, monitoring, and a live product in your users' hands — with us on call after launch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES / BENTO ============ -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>What we build</span>
+      <h2>Three platforms. One engineering standard.</h2>
+      <p>Whatever your users touch — a browser tab, a phone, or a workstation — it's built and maintained to the same bar.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="card card-featured">
+        <div>
+          <div class="card-icon"><svg class="icon"><use href="#i-web"/></svg></div>
+          <h3>Web Development</h3>
+          <p>Full-stack web applications — from marketing sites to complex internal platforms — built on architecture that scales with you, not against you.</p>
+          <div class="card-tags"><span class="card-tag">React</span><span class="card-tag">Spring Boot</span><span class="card-tag">PostgreSQL</span></div>
+        </div>
+        <div class="mock-window">
+          <div class="mock-bar"><span></span><span></span><span></span></div>
+          <div class="mock-body"><div class="l1"></div><div class="l2"></div><div class="l3"></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon"><svg class="icon"><use href="#i-mobile"/></svg></div>
+        <h3>Mobile Apps</h3>
+        <p>Native and cross-platform apps that feel fast, work offline, and ship to both stores without compromise.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon"><svg class="icon"><use href="#i-desktop"/></svg></div>
+        <h3>Desktop Applications</h3>
+        <p>Software for teams that need more control than a browser tab offers — internal tools, dashboards, and workstations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECH STACK ============ -->
+<section class="stack" id="stack">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow"><span class="dot"></span>The stack</span>
+      <h2>Enterprise-grade, by default.</h2>
+      <p>We don't experiment on client projects. Every build runs on infrastructure that's proven at scale.</p>
+    </div>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track" id="marqueeTrack">
+      <!-- set 1 -->
+      <div class="stack-pill"><svg class="icon"><use href="#i-java"/></svg><span><b>Java</b><span>Core language</span></span></div>
+      <div class="stack-pill"><svg class="icon"><use href="#i-leaf"/></svg><span><b>Spring Boot</b><span>Backend framework</span></span></div>
+      <div class="stack-pill"><svg class="icon"><use href="#i-db"/></svg><span><b>PostgreSQL</b><span>Database</span></span></div>
+      <div class="stack-pill"><svg class="icon"><use href="#i-docker"/></svg><span><b>Docker</b><span>Containerization</span></span></div>
+      <div class="stack-pill"><svg class="icon"><use href="#i-cloud"/></svg><span><b>Cloud Infra</b><span>Provisioning &amp; scale</span></span></div>
+      <!-- set 2 (duplicate for seamless loop) -->
+      <div class="stack-pill"><svg class="icon"><use href="#i-java"/></svg><span><b>Java</b><span>Core language</span></span></div>
+      <div class="stack-pill"><svg class="icon"><use href="#i-leaf"/></svg><span><b>Spring Boot</b><span>Backend framework</span></span></div>
+      <div class="stack-pill"><svg class="icon"><use href="#i-db"/></svg><span><b>PostgreSQL</b><span>Database</span></span></div>
+      <div class="stack-pill"><svg class="icon"><use href="#i-docker"/></svg><span><b>Docker</b><span>Containerization</span></span></div>
+      <div class="stack-pill"><svg class="icon"><use href="#i-cloud"/></svg><span><b>Cloud Infra</b><span>Provisioning &amp; scale</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BANNER ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta-card" id="contact">
+      <div class="cta-text">
+        <h2>Have a project in mind?</h2>
+        <p>Tell us what you're building. We'll reply within a business day with a clear scope and timeline — no sales runaround.</p>
+      </div>
+      <div class="cta-actions">
+        <form class="cta-form" id="ctaForm">
+          <div class="form-group">
+            <input type="text" id="fullName" name="fullName" placeholder="Full Name *" required class="form-input">
+          </div>
+          <div class="form-group">
+            <input type="text" id="contactInfo" name="contactInfo" placeholder="WhatsApp Number or Email *" required class="form-input">
+          </div>
+          <div class="form-group">
+            <textarea id="projectNote" name="projectNote" placeholder="Brief project details (optional)" rows="3" class="form-input form-textarea"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+            <span>Submit Request</span>
+            <svg class="icon" style="width:16px;height:16px"><use href="#i-arrow"/></svg>
+          </button>
+          <div class="form-success" id="formSuccess" style="display:none;">
+            ✓ Request received! We'll get back to you shortly.
+          </div>
+        </form>
+        <span class="cta-email">or write directly to <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact.itech.itsolutions@gmail.com" target="_blank" rel="noopener noreferrer">contact.itech.itsolutions@gmail.com</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="brand">
+          <img src="logo.png" alt="i-Tech Logo" class="brand-logo">
+          İ-Tech
+        </a>
+        <p>End-to-end software engineering for modern businesses. Remote-first, working with teams worldwide.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><span>Web Development</span></li>
+          <li><span>Mobile Apps</span></li>
+          <li><span>Desktop Applications</span></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact.itech.itsolutions@gmail.com" target="_blank" rel="noopener noreferrer">contact.itech.itsolutions@gmail.com</a></li>
+          <li><a href="https://wa.me/message/YQIZO2K5RU4VI1" target="_blank" rel="noopener noreferrer">+994 55 667 89 67</a></li>
+          <li><a href="https://wa.me/message/YQIZO2K5RU4VI1" target="_blank" rel="noopener noreferrer">@İTechITsolutionCompany</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 İ-Tech. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact.itech.itsolutions@gmail.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Email"><svg class="icon"><use href="#i-mail"/></svg></a>
+        <a href="https://wa.me/message/YQIZO2K5RU4VI1" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="WhatsApp"><svg class="icon"><use href="#i-whatsapp"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="script.js" defer></script>
+</body>
+</html>

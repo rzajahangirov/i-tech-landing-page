@@ -1,0 +1,6 @@
+# Ignore local configuration files containing secret webhook URLs
+config.js
+
+# OS files
+.DS_Store
+Thumbs.db
